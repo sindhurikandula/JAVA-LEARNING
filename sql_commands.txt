@@ -1,0 +1,48 @@
+create table bank_applicant2(
+  applicant_id number primary key,
+  applicant_name varchar2(20) not null,
+  applicant_mail varchar2(20) unique,
+  applicant_mobile varchar2(10) not null,
+  account_applied_for varchar2(10) check(account_applied_for in ('Savings','Current','credit','fixed')),
+  applicantion_status varchar2(10) default 'applied'
+   );
+
+ insert into bank_applicant2 values(4,'raj','raj@gmail.com','8876543211','Current','');
+
+ create table bank_account
+   (account_number number primary key,
+   account_balance number not null,
+   account_opening_date date not null,
+   cust_id number references bank_applicant2(applicant_id));//foreign key-can contain duplicate values
+
+
+
+
+insert into bank_account values(654321,85200,sysdate,1);
+insert into bank_account values(654322,5200,sysdate,2);
+insert into bank_account values(654323,6200,sysdate,1);
+insert into bank_account values(654324,8200,sysdate,3);
+insert into bank_account values(654326,200,sysdate,4);
+
+
+create table payee
+   (
+    payee_account_number number references bank_account(account_number),
+    payee_name varchar2(20) not null,
+    payee_nick_name varchar2(20) not null,
+    payee_limit number not null,
+    app_id number references bank_applicant2
+);
+
+
+update bank_applicant2 set applicantion_status='applied' where applicant_id=3;
+
+
+
+
+
+
+
+
+
+

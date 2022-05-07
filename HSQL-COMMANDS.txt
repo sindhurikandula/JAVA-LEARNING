@@ -1,0 +1,19 @@
+
+CREATE TABLE BANK_APPLICANT
+(
+APPLICANT_ID INT PRIMARY KEY,
+APPLICANT_NAME VARCHAR(20),
+APPLICANT_EMAIL_ADDRESS VARCHAR(50),
+APPLICANT_MOBILE_NUMBER VARCHAR(15),
+APPLICANT_DOB DATE
+)
+
+---------------------------------------------------------------------------------------------
+
+INSERT INTO BANK_APPLICANT VALUES(123,'JENNY','jenny@gmail.com',6543210987,'1991-11-12')
+----------------------------------------------------------------------------------------------
+SELECT * FROM "PUBLIC"."BANK_APPLICANT"
+-----------------------------------------------------------------------------------------------
+ALTER TABLE BANK_APPLICANT ADD APPLICANT_ADDRESS VARCHAR(50)
+------------------------------------------------------------------------------------------------
+UPDATE BANK_APPLICANT SET  APPLICANT_ADDRESS='SEAWOODS' WHERE APPLICANT_ID=123

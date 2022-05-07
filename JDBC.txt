@@ -1,0 +1,23 @@
+JDBC - Java DATABASE connectivity
+ * 
+ * 					Database <-- HSQLDB
+ * 						|
+ * 					  Driver <-- hsqldb.jar file
+ * 						|	C:\Users\PC-2\Downloads\hsqldb-2.6.1\hsqldb\lib
+ * 						|
+ * 					DriverManager
+ * 						|	1. registerDriver - ??? org.hsqldb.jdbc.JDBCDriver
+ * 						|	2. acquire the connection to the DB ?? URL jdbc:hsqldb:hsql://localhost/xdb
+ * 					Connection
+ * 						|
+ * 			---------------------------------
+ * 			|			|			|
+ * 		Statement PreparedStatement CallableStatement
+ * 
+ * 		SELECT	INSERT/UPDATE/DELETE   PROCEDURE/FUNCTION
+ * 1. load the driver
+ * 2. acquire the connection
+ * 3. make a desired statement
+ * 4. execute the statement
+ * 5. process the result if any
+ * 6. close the result, close the statement, close the db
