@@ -1,0 +1,52 @@
+create table customer_info(
+
+  account_number number primary key,
+  customer_name varchar2(20) not null,
+  mailid varchar2(20) unique,
+  mobileno number not null,
+  account_balance number not null,
+  username varchar2(10) unique,
+  password varchar2(10) not null
+);
+
+insert into customer_info values(6530273,'Sindhuri','kandula.sindhuri@sbi.co.in',9491409310,25000,'Sindhu501','Sindhu
+
+
+create table payeesbi
+   (
+    payee_id number primary key, 
+    payee_account_number number not null,
+    payee_name varchar2(20) not null,
+    payee_nick_name varchar2(20) not null,
+    payee_limit number not null,
+    account_number number references customer_info
+);
+
+
+
+create table payeeotherbank
+   (
+    payee_id number primary key, 
+    payee_name varchar2(20) not null,
+    payee_account_number number not null,
+    payee_ifsc varchar2(11) references ifsc_master
+    payee_nick_name varchar2(20) not null,
+    payee_limit number not null,
+    account_number number references customer_info
+);
+
+
+create table ifsc_master
+(
+  ifsc_code varchar2(11) primary key,
+  branch_name varchar2(20) not null,
+  bank_name varchar2(20) not null
+);
+
+
+
+
+
+
+
+
