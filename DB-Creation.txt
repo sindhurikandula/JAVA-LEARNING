@@ -19,7 +19,7 @@ create table payeesbi
     payee_name varchar2(20) not null,
     payee_nick_name varchar2(20) not null,
     payee_limit number not null,
-    account_number number references account_info
+    account_number number references account_info(account_number)
 );
 
 
