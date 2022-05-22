@@ -11,9 +11,47 @@ APPLICANT_DOB DATE
 ---------------------------------------------------------------------------------------------
 
 INSERT INTO BANK_APPLICANT VALUES(123,'JENNY','jenny@gmail.com',6543210987,'1991-11-12')
-----------------------------------------------------------------------------------------------
+-----------------------------------------------------
+
+
+insert into account_info values(101,'sindhuri','sindhuri@sbi.co.in',5000,'sindhuri11','sindhuri@1');
+-----------------------------------------
 SELECT * FROM "PUBLIC"."BANK_APPLICANT"
 -----------------------------------------------------------------------------------------------
 ALTER TABLE BANK_APPLICANT ADD APPLICANT_ADDRESS VARCHAR(50)
 ------------------------------------------------------------------------------------------------
 UPDATE BANK_APPLICANT SET  APPLICANT_ADDRESS='SEAWOODS' WHERE APPLICANT_ID=123
+
+
+
+
+
+create table payee
+   (
+    payee_id int primary key, 
+    payee_account_number int not null,
+    payee_name varchar(20) not null,
+    payee_nick_name varchar(20) not null,
+    payee_limit int not null,
+    account_number int references account_info(account_number)
+);
+
+
+create table account_info(
+
+  account_number int primary key,
+  account_holder_name varchar(20) not null,
+  mailid varchar(20) unique,
+  account_balance int not null,
+  username varchar(10) unique,
+  password varchar(10) not null
+);
+
+
+
+
+INSERT INTO PAYEE VALUES(1,102,'Shanvi','Shanu',100000,101);insert into account_info values(101,'sindhuri','sindhuri@sbi.co.in',5000,'sindhuri11','sindhuri@1');
+insert into account_info values(101,'sindhuri','sindhuri@sbi.co.in',5000,'sindhuri11','sindhuri@1');
+
+INSERT INTO PAYEE VALUES(1,102,'Shanvi','Shanu',100000,101);
+
