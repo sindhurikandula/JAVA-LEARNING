@@ -1,0 +1,23 @@
+create table account_info(  account_number number primary key,  account_holder_name varchar2(20) not null,  mailid varchar2(40) unique,  account_balance number not null,  username varchar2(20) unique,  
+password varchar2(20) not null);
+
+
+
+create table payee   (    payee_id number primary key,     payee_account_number number not null,    payee_name varchar2(20) not null,    payee_nick_name varchar2(20) not null,    payee_limit number not null,    
+account_number number references account_info(account_number));
+
+
+
+insert into account_info values(101,'sindhuri','kandula.sindhuri@sbi.co.in',5000,'sindhuri101','sindhuri@101');
+
+insert into account_info values(103,'Sweety','sweety@gmail.com',57000,'sweety103','sweety@103');
+
+insert into account_info values(104,'Jack','jack@gmail.com',5700,'jack104','jack@104');
+
+insert into account_info values(105,'Johnson','johnsonk@gmail.com',500,'johnson105','johnson@105');
+
+
+
+
+INSERT INTO PAYEE VALUES(1,102,'Shanvi','Shanu',100000,101);
+INSERT INTO PAYEE VALUES(2,103,'Sweety','baby',500000,101);
