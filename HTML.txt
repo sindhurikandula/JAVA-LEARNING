@@ -1,0 +1,156 @@
+Service:
+
+export class DepartmentServiceService {
+
+  constructor(private myHttp:HttpClient
+    ) { }
+
+  loadAllUserDetailsService():Observable<Department[]>
+   {
+     return this.myHttp.get<Department[]>("http://localhost:8080/depts//");
+   }
+}
+
+
+
+
+Component.ts:
+
+
+export class AssignmentComponent implements OnInit {
+
+  constructor(private uds:UserdetailsService ) { }
+  UserList:UserDetails[]=[];
+
+  ngOnInit(): void {
+
+    this.uds.loadAllUserDetailsService().subscribe(
+      (data)=>
+      {
+        this.UserList=data;
+        console.log(this.UserList);
+      },
+      (err)=> {
+        console.log(err);
+
+      }
+    )
+  }
+}
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------
+
+	[
+		
+		ACCOUNT {
+			ACNO:101
+			..
+			..
+			PAYEELIST : [
+				{1},
+				{2},
+				{3},
+			]
+		}
+	]
+
+
+
+	------------------------------------------------------------------
+
+		Account acc = 	acrepo.getAccunt(101);
+
+			acc.getPayeeList().add(new Payee(1));
+			acc.getPayeeList().add(new Payee(2));
+			acc.getPayeeList().add(new Payee(3));
+
+
+		acrepo.merge(acc);
+
+		
+
+
+---------------------------------------------------------------------------------------------------------------
+const routes: Routes = [
+
+  {path:'about',component:AboutComponent},
+  {path:'our-emps',component:OurEmployeesComponent},
+  {path:'our-comp',component:OurCompanyComponent},
+  {path:'login',component:Login1Component},
+  {path:'register',component:RegisterComponent},
+  {path:'dashboard',component:DashboardComponent},
+  {path:'**',component:PageNotFoundComponent},
+
+];
+-------------------------------------------------------------------------------------------------------------
+
+{path:'about',
+    children:[
+      {path:'',component:AboutComponent}, 
+      {path:'our-emps',component:OurEmployeesComponent},
+      {path:'our-comp',component:OurCompanyComponent},
+
+    ]
+ },
+
+ {path:'Home',component:HomeComponent},
+ {path:'login',component:Login1Component},
+{path:'register',component:RegisterComponent},
+{path:'PayeeManagement',component:PayeeComponent},
+{path:'MyDashboard',component:DashboardComponent},
+{path:'AdminDashboard',component:AdminDashboardComponent},
+{path:'**',component:PageNotFoundComponent}
+
+
+
+
+
+
+
+//IMPORTANT*****
+	/* @org.springframework.transaction.annotation.Transactional
+	 public void deletePayeeOfThisAccountNumber(int acno, int payeeid) {
+		 Account acc = em.find(Account.class, acno);
+		 System.out.println("Account found.....");
+		 
+		List<Payee> payees = acc.getPayeeList();
+		for (Payee payee : payees) {
+			if(payee.getPayeeId() == payeeid) {
+				System.out.println("Payee found.....");
+				payees.remove(payee);
+				System.out.println("Payee removed.....");
+				break;
+			}
+		}
+		acc.setPayeeList(payees);
+		em.merge(acc);
+		 
+	 }*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

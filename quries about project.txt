@@ -1,0 +1,234 @@
+are three tables used?
+      applicant
+      account
+       payee
+
+
+only add payee
+      delete payee
+     view all payees
+
+Do we need email and mobile number ?
+
+what methods do we need to write in repo?
+
+how to start angular work?
+
+
+
+Overall idea:
+1.database-  table creation queries
+
+
+2.pojo-for tables
+
+
+3.repo-
+4.service
+5.controller
+6.angular
+
+
+
+
+1.Database creation: create table queries
+
+2.POJO: class similar to table along with getter an setter methods
+
+              we have annotations:
+               @Component
+               @Entity
+               @Table(name="dept")dept refers to table name in database
+               
+
+              create datamembers similar to table columns in database
+
+
+             @Id------for primary key
+
+            @Column(name="loc")loc refers to cloumn name in table in DB    
+
+           @NonNull
+           @UniqueConstraint
+
+
+        Include getter and setter methods
+
+
+       Mapping and foreign key:
+
+        Mapping can be:One to One( Bankapplicant and Pancard):
+
+
+@OneToOne(mappedBy="bankapplicant")
+private Pancard pancard;
+
+
+@OneToOne
+private BankApplicant bankapplicant;
+
+
+
+Mapping can be:One to Many(Department and Employee):
+
+
+@OneToMany(mappedBy="department",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+   private List<Employee> employeeList;
+
+
+ @ManyToOne
+@JoinColumn(name="DEPTNO")
+private Department department;
+	 
+
+3.REPOSITORY:is a interface
+
+
+@Repository
+
+include methods we need:
+generally findall,find,insert,delete,update
+
+
+Repository implementation:
+
+@Repository("")/id name may or may not be given
+                        if given can be used with Qualifier
+
+
+Constructor:  create entity manager factory,entity manager and entity transaction(insert and update and delete)
+
+
+EntityManagerFactory emf = Persistence.createEntityManagerFactory("MyJPA");
+this.em = emf.createEntityManager();
+EntityTransaction et=em.getTransaction();
+
+
+
+Findall:
+
+
+public List<Department> findAllDepartments() {
+		TypedQuery<Department> query = em.createQuery("from Department", Department.class);
+		return query.getResultList();
+	}
+
+
+Find:
+
+
+public Department findDepartmentById(int deptno) {
+		return em.find(Department.class,deptno);
+	}
+
+
+Updation:
+
+public void updateDepartment(Department d) {
+		
+		EntityTransaction et=em.getTransaction();
+		et.begin();
+		em.merge(d);
+		et.commit();
+		
+	}
+
+
+deletion:
+
+	public void deleteDepartmentById(int deptno) {
+		EntityTransaction et = em.getTransaction();
+		et.begin();
+			Department d = em.find(Department.class, deptno);
+			em.remove(d);
+		et.commit();
+	}
+
+
+Insert:
+
+	public void saveDepartment(Department d) {
+	
+		EntityTransaction et=em.getTransaction();
+		et.begin();
+		em.persist(d);
+		et.commit();
+	}
+
+
+
+
+
+4.Service: is a interface include methods we need
+
+@Service
+
+
+Service Implementation:
+
+@Service
+
+@Autowired
+DepartmentRepository depReps;
+
+
+in method:
+
+validation/verification takes place
+and then accordingly method from repository will be invoked.
+
+
+
+5.Controller
+
+@RestController
+@RequestMapping("/.....")
+
+
+@Autowired
+DepartmentService depService;
+
+
+any method with @RequestMapping("/....")
+and then accordingly method from service will be invoked.
+
+
+
+
+6.SpringBoot Project
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
